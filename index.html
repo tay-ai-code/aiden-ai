@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Futuristic Dino Run</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="hud">
+    <div class="hud-left">
+      <button id="btnRun" class="btn">Run / Duck (Hold)</button>
+      <button id="btnJump" class="btn">Jump</button>
+      <button id="btnRestart" class="btn btn-secondary">Restart</button>
+      <button id="btnShop" class="btn btn-shop">Shop</button>
+    </div>
+    <div class="hud-right">
+      <div class="stat">Speed: <span id="speedText">1.0x</span></div>
+      <div class="stat">Gold: <span id="goldText">0</span> 🪙</div>
+      <div class="stat">Skin: <span id="skinText">Green Dino</span></div>
+    </div>
+  </div>
+
+  <div id="game">
+    <!-- Parallax background layers -->
+    <div class="bg layer stars"></div>
+    <div class="bg layer grid"></div>
+    <div class="bg layer skyline"></div>
+
+    <!-- Ground -->
+    <div id="ground"></div>
+
+    <!-- Yeho (chaser) -->
+    <div id="yeho" class="actor">
+      <div class="nameplate">yeho</div>
+      <div class="human">🧍‍♂️</div>
+    </div>
+
+    <!-- Dinosaur (player) -->
+    <div id="dino" class="actor" data-state="run">
+      <div id="dino-emoji" class="dino-skin">🦖</div>
+      <div class="trail"></div>
+    </div>
+
+    <!-- UI overlays -->
+    <div id="toast"></div>
+    <div id="gameOver" class="overlay hidden">
+      <div class="card">
+        <h2>Got caught! 😵</h2>
+        <p>Trip detected. Yeho caught up.</p>
+        <button id="btnOverlayRestart" class="btn btn-primary">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shop Modal -->
+  <div id="shopModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Dino Shop</h2>
+        <button id="shopClose" class="icon-btn" aria-label="Close">✖</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted">Gold is cumulative across all runs.</p>
+        <div class="shop-grid">
+          <!-- Items populated by JS -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div>Gold: <span id="shopGoldText">0</span> 🪙</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- On-screen help -->
+  <div class="help">
+    <details>
+      <summary>Controls & Rules</summary>
+      <ul>
+        <li><strong>Jump</strong> with the Jump button or <kbd>↑</kbd>/<kbd>Space</kbd>.</li>
+        <li><strong>Duck</strong> by holding the Run button or holding <kbd>↓</kbd>.</li>
+        <li>Rocks: Jump only (20 gold). Boulders: Duck only (20 gold). Carpets: Jump or Duck (10 gold).</li>
+        <li>Jetpack ✈️: fly for 5s; steer with <kbd>↑</kbd>/<kbd>↓</kbd> to grab bonus coins.</li>
+        <li>Magnet 🧲: obstacles harmless for 5s.</li>
+        <li>Speed increases +0.1× every 10s (starts at 1.0×).</li>
+      </ul>
+    </details>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
